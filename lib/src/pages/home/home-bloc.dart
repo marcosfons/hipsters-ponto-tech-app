@@ -1,15 +1,20 @@
 
 
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
 import 'package:hipsters_ponto_tech/src/services/Data.dart';
 import 'package:rxdart/rxdart.dart';
 
-class HomeBloc {
+class HomeBloc extends BlocBase {
 
   Data data = Data();
 
   var _controllerPodcasts = BehaviorSubject<List<Podcast>>();
   Stream<List<Podcast>> get outPodcasts => _controllerPodcasts.stream;
+
+  HomeBloc() {
+    loadPodcasts();
+  }
 
   Future loadPodcasts() async {
     data.lerPodcasts()
@@ -31,6 +36,7 @@ class HomeBloc {
     data.salvarPodcasts(_controllerPodcasts.value);
   }
 
+  @override
   void dispose() {
     data.salvarPodcasts(_controllerPodcasts.value);
     _controllerPodcasts.close();

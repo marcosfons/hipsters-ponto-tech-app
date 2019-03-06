@@ -5,6 +5,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:hipsters_ponto_tech/blocs/audio-bloc.dart';
 import 'package:hipsters_ponto_tech/blocs/download-bloc.dart';
+import 'package:hipsters_ponto_tech/src/models/Download.dart';
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
 import 'package:hipsters_ponto_tech/src/widgets/hero.dart';
 import 'package:hipsters_ponto_tech/src/widgets/player-widget.dart';
@@ -65,7 +66,7 @@ class _PodcastPageState extends State<PodcastPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left:20, right: 20),
+                  padding: const EdgeInsets.only(left:12, right: 12),
                   width: double.infinity,
                   child: Row(
                     children: <Widget>[
@@ -91,12 +92,51 @@ class _PodcastPageState extends State<PodcastPage> {
                         ),
                       ),
                       Container(width: 5,),
+                      // RaisedButton(
+                      //   onPressed: () => downloadsBloc.remove(widget.podcast),
+                      //   child: Text('Remover'),
+                      // ),
                       Expanded(
-                        child: FlatButton.icon(
-                          icon: Icon(Icons.file_download, size: 14,),
-                          label: Text('Download', style: TextStyle(fontSize: 10),),
-                          color: Colors.white,
-                          onPressed: () => downloadsBloc.download(widget.podcast)
+                        child: StreamBuilder<Map<Podcast, Download>>(
+                          stream: downloadsBloc.outDownloading,
+                          builder: (BuildContext context, AsyncSnapshot<Map<Podcast, Download>> snapshot) {
+                            if(widget.podcast.downloaded) {
+                              return RaisedButton(
+                                onPressed: () => downloadsBloc.remove(widget.podcast),
+                                child: Text('Remover'),
+                              );
+                            }
+                            if(snapshot.hasData) {
+                              if(snapshot.data[widget.podcast] != null) {
+                                return Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Slider(
+                                        onChanged: (val) {},
+                                        value: snapshot.data[widget.podcast].progress,
+                                        min: 0,
+                                        max: 100,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${snapshot.data[widget.podcast].progress.toInt().toString()}%',
+                                      style: TextStyle(fontSize: 10),
+                                    ),
+                                    IconButton(
+                                      icon: Icon(Icons.clear),
+                                      onPressed: () => downloadsBloc.cancel(widget.podcast),
+                                    )
+                                  ],
+                                );
+                              }
+                            }
+                            return FlatButton.icon(
+                              icon: Icon(Icons.file_download, size: 14,),
+                              label: Text('Download', style: TextStyle(fontSize: 10),),
+                              color: Colors.white,
+                              onPressed: () => downloadsBloc.download(widget.podcast)
+                            );
+                          }
                         ),
                       )
                     ],

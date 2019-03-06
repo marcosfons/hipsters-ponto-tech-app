@@ -13,7 +13,7 @@ class Podcast {
   String summary;
   String duration;
   Duration position;
-  bool downloaded;
+  bool downloaded = false;
 
   Podcast.fromRSS(RssItem item) {
     this.link = item.link;
