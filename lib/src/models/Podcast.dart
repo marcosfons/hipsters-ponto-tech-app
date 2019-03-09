@@ -1,4 +1,5 @@
-import 'package:webfeed/webfeed.dart';
+
+import 'package:hipsters_ponto_tech/webfeed_modified/rss_item.dart';
 
 class Podcast {
   String link;

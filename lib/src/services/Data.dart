@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
+import 'package:hipsters_ponto_tech/webfeed_modified/rss_feed.dart';
 import 'package:http/http.dart' as http;
-import 'package:webfeed/webfeed.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Data {

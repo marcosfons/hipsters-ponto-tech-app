@@ -3,8 +3,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:hipsters_ponto_tech/blocs/audio-bloc.dart';
-import 'package:hipsters_ponto_tech/blocs/download-bloc.dart';
+import 'package:hipsters_ponto_tech/src/blocs/audio-bloc.dart';
+import 'package:hipsters_ponto_tech/src/blocs/download-bloc.dart';
 import 'package:hipsters_ponto_tech/src/models/Download.dart';
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
 import 'package:hipsters_ponto_tech/src/widgets/hero.dart';
