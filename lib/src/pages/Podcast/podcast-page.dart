@@ -7,7 +7,6 @@ import 'package:hipsters_ponto_tech/src/blocs/audio-bloc.dart';
 import 'package:hipsters_ponto_tech/src/blocs/download-bloc.dart';
 import 'package:hipsters_ponto_tech/src/models/Download.dart';
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
-import 'package:hipsters_ponto_tech/src/widgets/hero.dart';
 import 'package:hipsters_ponto_tech/src/widgets/player-widget.dart';
 
 class PodcastPage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _PodcastPageState extends State<PodcastPage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(237, 237, 237, 1),
       appBar: AppBar(
-        title: Text('teste'),
+        title: Text('Podcast'),
         backgroundColor: Colors.grey[800],
       ),
       body: Column(
@@ -171,66 +170,6 @@ class _PodcastPageState extends State<PodcastPage> {
             ),
           ),
           PlayerWidget()
-        ],
-      ),
-    );
-
-    return Material(
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            backgroundColor: Colors.grey[800],
-            expandedHeight: MediaQuery.of(context).size.width - 24,
-            flexibleSpace: FlexibleSpaceBar(
-              background: PhotoHero(
-                tag: widget.podcast.image,
-                child: Image.network(widget.podcast.image, fit:BoxFit.contain),
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.play_arrow),
-                      onPressed: () => audioBloc.tocar(widget.podcast),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.file_download),
-                      onPressed: () => audioBloc.pausar(),
-                    ),
-                  ],
-                ),
-              ),
-              StreamBuilder<Duration>(
-                stream: audioBloc.outDuration,
-                builder: (BuildContext context, AsyncSnapshot<Duration> snapshotDuration) {
-                  if(snapshotDuration.hasData)
-                    return StreamBuilder<Duration>(
-                      stream: audioBloc.outPosition,
-                      builder: (BuildContext context, AsyncSnapshot<Duration> snapshotPosition) {
-                        if(snapshotPosition.hasData)
-                          return Slider(
-                            value: snapshotPosition.data.inSeconds.toDouble(),
-                            max: snapshotDuration.data.inSeconds.toDouble(),
-                            onChangeEnd: audioBloc.seek,
-                            onChanged: (value) {},
-                          );
-                        return Container();
-                      },
-                    );
-                  return Container();
-                }
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 14.0, right: 14, top: 16, bottom: 16),
-                child: Text(widget.podcast.descricao, style: TextStyle(fontSize: 14),),
-              )
-            ]),
-          )
         ],
       ),
     );

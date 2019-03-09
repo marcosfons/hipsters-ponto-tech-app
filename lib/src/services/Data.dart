@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 class Data {
 
-  final String URL = 'https://hipsters.tech/feed/podcast/';
+  static const String URL = 'https://hipsters.tech/feed/podcast/';
 
 
   Future<List<Podcast>> getPodcasts() async {
@@ -24,7 +24,8 @@ class Data {
   void salvarPodcasts(List<Podcast> podcasts) {
     getApplicationDocumentsDirectory().then((path) {
       File file = File(path.path + 'podcasts.json');
-      !file.existsSync() ? file.createSync() : null;
+      if(!file.existsSync())
+        file.createSync();
       file.writeAsStringSync(json.encode(podcasts.map((podcast) => podcast.toJson()).toList()));
     });
   }

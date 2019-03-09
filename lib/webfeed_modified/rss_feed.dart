@@ -1,7 +1,5 @@
 import 'dart:core';
 
-import 'package:hipsters_ponto_tech/webfeed_modified/rss_category.dart';
-import 'package:hipsters_ponto_tech/webfeed_modified/rss_cloud.dart';
 import 'package:hipsters_ponto_tech/webfeed_modified/rss_image.dart';
 import 'package:hipsters_ponto_tech/webfeed_modified/rss_item.dart';
 import 'package:hipsters_ponto_tech/webfeed_modified/util/helpers.dart';

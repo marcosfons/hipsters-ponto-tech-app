@@ -150,7 +150,7 @@ class PodcastCard extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => PodcastPage(podcast: podcast,))),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => PodcastPage(podcast: podcast,))),
     );
   }
 }

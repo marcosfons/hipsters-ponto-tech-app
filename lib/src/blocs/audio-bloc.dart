@@ -36,7 +36,6 @@ class AudioBloc extends BlocBase {
     _controllerState.addStream(audioPlayer.onPlayerStateChanged);
     audioPlayer.completionHandler = () => hide();
 
-
     MediaNotification.setListener('pause', () {
       pausar();
     });
