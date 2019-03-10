@@ -7,6 +7,7 @@ import 'package:hipsters_ponto_tech/src/blocs/audio-bloc.dart';
 import 'package:hipsters_ponto_tech/src/blocs/download-bloc.dart';
 import 'package:hipsters_ponto_tech/src/models/Download.dart';
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
+import 'package:hipsters_ponto_tech/src/widgets/hero.dart';
 import 'package:hipsters_ponto_tech/src/widgets/player-widget.dart';
 
 class PodcastPage extends StatefulWidget {
@@ -37,7 +38,10 @@ class _PodcastPageState extends State<PodcastPage> {
                   height: MediaQuery.of(context).size.width / 2.6,
                   child: Row(
                     children: <Widget>[
-                      Image.network(widget.podcast.image,fit: BoxFit.fitHeight,),
+                      PhotoHero(
+                        tag: widget.podcast.title,
+                        child: Image.network(widget.podcast.image,fit: BoxFit.fitHeight,)
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),

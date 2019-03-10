@@ -119,7 +119,7 @@ class PodcastCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             PhotoHero(
-              tag: podcast.image,
+              tag: podcast.title,
               child: Image.network(podcast.image,
                 width: MediaQuery.of(context).size.width / 3,
                 height: MediaQuery.of(context).size.width / 3,
