@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 class Data {
 
-  static const String URL = 'https://hipsters.tech/feed/podcast/';
+  static const String URL = 'http://feeds.feedburner.com/igrejaemaracaju/ministracoes';
 
 
   Future<List<Podcast>> getPodcasts() async {

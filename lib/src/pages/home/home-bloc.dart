@@ -1,5 +1,3 @@
-
-
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:hipsters_ponto_tech/src/models/Podcast.dart';
 import 'package:hipsters_ponto_tech/src/services/Data.dart';
